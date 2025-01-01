@@ -36,3 +36,29 @@
 
 (let [grid (load-grid "inputs/04.txt")]
   (println "Part 1:" (part-1 grid)))
+
+
+(defn x-mas-midpoints [grid]
+  (let [rows (count grid)
+        cols (count (get grid 0))]
+    (for [row (range rows)
+                   col (range cols)
+                   delta-row '(-1 1)
+                   delta-col '(-1 1)
+                   :when (check grid "MAS" {:index 0 :row row :col col :delta-row delta-row :delta-col delta-col})]
+               { :row-mid (+ row delta-row)  :col-mid (+ col delta-col) }
+               )))
+
+(defn part-2 [grid]
+  (get (->> grid
+       (x-mas-midpoints)
+       (frequencies)
+       (vals)
+       (frequencies)
+     ) 2))
+
+(let [grid (load-grid "inputs/04.txt")]
+  (println "Part 2:" (part-2 grid)))
+
+
+

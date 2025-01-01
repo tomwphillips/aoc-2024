@@ -1,6 +1,6 @@
 (ns aoc.04-test
   (:require [clojure.test :as t]
-            [aoc.04 :refer [load-grid count-words check next-position part-1]]))
+            [aoc.04 :refer [load-grid check next-position part-1 part-2]]))
 
 (def example-grid (load-grid "inputs/04_example.txt"))
 
@@ -18,7 +18,8 @@
   (t/is (false? (check example-grid "XMAS" {:index 0 :row 0 :col 4 :delta-row -1 :delta-col 0})))
   )
 
-(t/deftest test-count-words
-  (let [grid (load-grid "inputs/04_example.txt")]
-    (t/is (= (part-1 grid) 18))))
+(t/deftest test-part-1 
+    (t/is (= (part-1 example-grid) 18)))
 
+(t/deftest test-part-2
+  (t/is (= (part-2 example-grid) 9)))
